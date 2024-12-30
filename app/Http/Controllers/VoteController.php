@@ -42,9 +42,9 @@ class VoteController extends Controller
         // Increment the vote count for the candidate in the vote_counts table
         $voteCount = VoteCount::firstOrCreate(
             ['candidate_id' => $request->candidate_id],
-            ['vote_count' => 1]
+            ['vote_count' => 0]
         );
-        $voteCount->increment('count');
+        $voteCount->increment('vote_count');
 
         return redirect()->route('home')->with('success', 'Your vote has been submitted.');
     }
